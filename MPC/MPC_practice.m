@@ -1,4 +1,4 @@
-function MPC_practice(screen_param, expt_param.run_type)     
+function MPC_practice(screen_param, expt_param)     
 global ip port
 
 %% Assign variables
