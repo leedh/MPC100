@@ -1,0 +1,10 @@
+.ipynb_checkpoints/
+.vscode
+.DS_Store
+.ipynb_checkpoints
+*.out
+checkpoint
+__pycache__
+*.swp
+*.swo
+
