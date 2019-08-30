@@ -281,8 +281,9 @@ if strcmp(expt_param.run_type, 'caps') | strcmp(expt_param.run_type, 'resting') 
     %% Post Rating
     
     if strcmp(expt_param.run_type, 'resting')
-        scale = {'overall_alertness' 'overall_resting_valence' 'overall_resting_self' ...
-            'overall_resting_vivid' 'overall_resting_time' 'overall_resting_safethreat'};
+        scale = {'overall_alertness' ...
+            'overall_resting_valence' 'overall_resting_self' 'overall_resting_vivid' 'overall_resting_time' ...
+            'overall_resting_safethreat'};
     elseif strcmp(expt_param.run_type, 'caps')
         scale = {'overall_alertness'};
     end
@@ -292,7 +293,7 @@ if strcmp(expt_param.run_type, 'caps') | strcmp(expt_param.run_type, 'resting') 
     data.dat.post_rating_start = GetSecs;
 
     for i = 1:scale_size(2)
-        SetMouse(lb1+(rb1-lb1)/2, 0, theWindow);
+        SetMouse(lb1+(rb1-lb1)/2,0,theWindow);
         while true
             [x,~,button] = GetMouse(theWindow);
             [lb, rb, ~] = draw_scale_pls(scale{i}, screen_param.window_info, screen_param.line_parameters, screen_param.color_values);
@@ -333,23 +334,22 @@ if strcmp(expt_param.run_type, 'caps') | strcmp(expt_param.run_type, 'resting') 
 
 end
 
-
 if strcmp(expt_param.run_type, 'movie_heat')
 
     Screen(theWindow, 'FillRect', bgcolor, window_rect);
     Screen('Flip', theWindow);
     Screen('TextSize', theWindow, fontsize);
-
+    
     lb = lb2;
     rb = rb2;
-
+    
     waitsec_fromstarttime(GetSecs, 2);
-
+    
     %% Post Rating
 %     scale_size = size(scale);
     data.dat.post_rating_start = GetSecs;
-    SetMouse((rb+lb)/2, H*(9.8/10), theWindow);
-
+    SetMouse((rb+lb)/2,H*(9.8/10),theWindow);
+    
     while true
         [x,y,button] = GetMouse(theWindow);
         Screen('TextSize', theWindow, 25);
@@ -361,15 +361,15 @@ if strcmp(expt_param.run_type, 'movie_heat')
         DrawFormattedText(theWindow, double('긍정'), rb+scale_H*(0.1),H*(9.8/10), white,[],[],[],1.2);
         DrawFormattedText(theWindow, double('부정'), lb-scale_H*(0.7), H*(9.8/10), white,[],[],[],1.2);
         DrawFormattedText(theWindow, double('몰입도'), W*(1/2)-scale_H*(0.3), H*(5.5/10), white,[],[],[],1.2);
-        DrawFormattedText(theWindow, double('영화를 볼때 감정과 몰입은 어떠셨나요?'), W*(1/2)-scale_H*(2.5), H*(4.5/10), white,[],[],[],1.2);
+        DrawFormattedText(theWindow, double('영화를 볼때 감정과 몰입은 어떠셨나요?'), W*(1/2)-scale_H*(1.5), H*(4.5/10), white,[],[],[],1.2);
         Screen('TextSize', theWindow, fontsize);
-
+        
         if x < lb; x = lb; elseif x > rb; x = rb; end
         if y < H*(9.8/10)-(rb-lb)/2; y = H*(9.8/10)-(rb-lb)/2; elseif y > H*(9.8/10); y = H*(9.8/10); end
         Screen('DrawDots', theWindow, [x, y], 10, orange, [0 0], 1); %x, H*(4/5)-scale_H/3, x, H*(4/5)+scale_H/3
         %Screen('DrawLine', theWindow, orange, x, y, x+scale_H/5, y+scale_H/5, 6); %rqating bar x, H*(4/5)-scale_H/3, x, H*(4/5)+scale_H/3
         Screen('Flip', theWindow);
-
+        
         if button(1)
             while button(1)
                 [~,~,button] = GetMouse(theWindow);
@@ -378,7 +378,7 @@ if strcmp(expt_param.run_type, 'movie_heat')
             data.dat.post_rating.overal_movie_rating_attention = abs(1 - (y - (H*(9.8/10)-(rb-lb)/2))/(H*(9.8/10) - (H*(9.8/10)-(rb-lb)/2)));
             break
         end
-
+        
         [~,~,keyCode] = KbCheck;
         if keyCode(KbName('q')) == 1
             abort_experiment('manual');
@@ -391,9 +391,6 @@ if strcmp(expt_param.run_type, 'movie_heat')
 end
 
 
-
-
-
 %% Saving Data
 data.dat.run_end_time = GetSecs;
 data.dat.run_duration_time = data.dat.run_end_time - data.dat.fmri_start_time;
@@ -401,4 +398,4 @@ data.dat.run_duration_time = data.dat.run_end_time - data.dat.fmri_start_time;
 save(data.datafile, 'data', '-append');
 save(ckpt_filedir, 'ckpt');
 
-end    
+end
