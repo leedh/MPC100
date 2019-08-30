@@ -154,7 +154,7 @@ if ~exist('basedir', 'var') % In order to make program don't run simultaneously
     end
 
     if practice
-        MPC_practice(screen_param);
+        MPC_practice(screen_param, expt_param);
     end
 
     %% Start Run
