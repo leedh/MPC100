@@ -71,7 +71,7 @@ if ~exist('basedir', 'var') % In order to make program don't run simultaneously
     
     %% Biopack Python setting
     PATH = getenv('PATH');
-    setenv('PATH', [PATH ':/Users/sungwoo320/anaconda3/bin:/Users/sungwoo320/anaconda3/condabin']); %For biopack, you need to add your python3 enviroment path
+    setenv('PATH', [PATH ':/Users/donghee/anaconda3/bin:/Users/donghee/anaconda3/condabin']); %For biopack, you need to add your python3 enviroment path
     %setenv('PATH', [PATH ':/Library/Frameworks/Python.framework/Versions/3.7/bin']);
     
     %% Eyelink file name
