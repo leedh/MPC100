@@ -36,6 +36,28 @@ starttime = GetSecs;
 
 %% Maximum temperature heat pain stimulus
 if strcmp(expt_param.run_type, 'no_movie_heat') || strcmp(expt_param.run_type, 'movie_heat')    
+    % Push the button to deliver heat stimulus
+    while true
+        [~,~,keyCode] = KbCheck;
+        if keyCode(KbName('space')) == 1
+            break;
+        elseif keyCode(KbName('q')) == 1
+            abort_experiment('manual');
+            break
+        end
+
+        if keyCode(KbName('q')) == 1
+            abort_experiment('manual');
+            break
+        end
+
+        msgtxt = ['실험자는 \n\n 최고온도 열자극을 전달하려면 \n\n space 을 눌러주시기 바랍니다.'];
+        msgtxt = double(msgtxt); % korean to double
+        DrawFormattedText(theWindow, msgtxt, 'center', 'center', white, [], [], [], 2);
+        Screen('Flip', theWindow); 
+    end
+    
+    
     % Making pathway program list
     PathPrg = load_PathProgram('MPC');
     
