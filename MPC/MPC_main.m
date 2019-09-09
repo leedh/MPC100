@@ -5,7 +5,7 @@ close all;
 %% SETTTING
 addpath(genpath(pwd));
 PATH = getenv('PATH');
-setenv('PATH', [PATH ':/Users/sungwoo320/anaconda3/bin:/Users/sungwoo320/anaconda3/condabin']); %For biopack, you need to add your python3 path
+setenv('PATH', [PATH ':/Users/donghee/anaconda3/bin:/Users/donghee/anaconda3/condabin']); %For biopack, you need to add your python3 path
 %setenv('PATH', [PATH ':/Library/Frameworks/Python.framework/Versions/3.7/bin']);
 
 basedir = pwd;
