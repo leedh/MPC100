@@ -34,11 +34,18 @@ SetMouse(x,y)
 
 starttime = GetSecs;
 
+% Keyboard input setting
+if expt_param.dofmri
+    device(1).product = 'Apple Keyboard';
+    device(1).vendorID= 1452;
+    apple = IDkeyboards(device(1));
+end 
+
 %% Maximum temperature heat pain stimulus
 if strcmp(expt_param.run_type, 'no_movie_heat') || strcmp(expt_param.run_type, 'movie_heat')    
     % Push the button to deliver heat stimulus
     while true
-        [~,~,keyCode] = KbCheck;
+        [~,~,keyCode] = KbCheck(apple);
         if keyCode(KbName('space')) == 1
             break;
         elseif keyCode(KbName('q')) == 1
