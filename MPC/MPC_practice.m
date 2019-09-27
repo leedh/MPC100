@@ -75,13 +75,13 @@ if strcmp(expt_param.run_type, 'no_movie_heat') || strcmp(expt_param.run_type, '
     if expt_param.Pathway
         main(ip, port, 1, MaxHeat.program);     % Maximum temperature
     end
-    waitsec_fromstarttime(starttime, 2);
+    waitsec_fromstarttime(starttime, 3);
 
     %-------------Ready for Pathway------------------
     if expt_param.Pathway
         main(ip, port, 2); %ready to pre-start
     end
-    waitsec_fromstarttime(starttime, 4); % Because of wait_pathway_setup-2, this will be 2 seconds
+    waitsec_fromstarttime(starttime, 5); % Because of wait_pathway_setup-2, this will be 2 seconds
     
     %------------- start to trigger thermal stimulus------------------    
     if expt_param.Pathway
