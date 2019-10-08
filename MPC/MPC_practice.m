@@ -74,13 +74,13 @@ if strcmp(expt_param.run_type, 'no_movie_heat') || strcmp(expt_param.run_type, '
     if expt_param.Pathway
         main(ip, port, 1, MaxHeat.program);     % Maximum temperature
     end
-    waitsec(2);
+    WaitSecs(2);
 
     %-------------Ready for Pathway------------------
     if expt_param.Pathway
         main(ip, port, 2); %ready to pre-start
     end
-    waitsec(2); 
+    WaitSecs(2); 
     
     %------------- start to trigger thermal stimulus------------------    
     if expt_param.Pathway
@@ -95,7 +95,7 @@ if strcmp(expt_param.run_type, 'no_movie_heat') || strcmp(expt_param.run_type, '
         DrawFormattedText(theWindow, MaxHeat.intensity, 'center', 'center', white, [], [], [], 1.2);
         Screen('Flip', theWindow); 
     end
-    waitsec(13);
+    WaitSecs(13);
 end
 
 %% Rating bar practice
