@@ -5,26 +5,19 @@ addpath(genpath(pwd));
 basedir = pwd;
 savedir = fullfile(basedir, 'Data');
 
-if ~exist(savedir)
-    error('Error in directory. Please check.')
-end
-
-
 nowtime = clock;
-SubjDate = sprintf('%.2d%.2d%.2d', nowtime(1), nowtime(2), nowtime(3));
+SubjDate = sprintf('%.2d%.2qd%.2d', nowtime(1), nowtime(2), nowtime(3));
 
-data.sub_name = 'MPC002_LSY'; % ex) MPC000_LDH
-data.datafile = fullfile(savedir, [data.sub_name, '_post_movie_rating', '_' ,SubjDate,'.mat']);
-data.version = 'MPC_09-09-2019_Cocoanlab';  % month-date-year
+data.sub_name = 'MPC_test';
+data.datafile = fullfile(savedir, [SubjDate, '_', data.sub_name, '_MPC_post_movie_rating', '.mat']);
+data.version = 'MPC_07-30-2019_Cocoanlab';  % month-date-year
 data.starttime = datestr(clock, 0);
 
 
-%%% movie select
-% [movie_file, movie_path] = uigetfile('*.mp4');
-% movie_dir = fullfile(movie_path, movie_file);
+[movie_file, movie_path] = uigetfile('*.mp4');
+movie_dir = fullfile(movie_path, movie_file);
 
-%%% movie fixed
-movie_dir = fullfile(basedir, '/Video/movie.mp4');
+% moviefile = fullfile(pwd, '/Video/2222.mp4');
 
 
 % if the same file exists, break and retype subject info
@@ -50,12 +43,12 @@ window_num = screens(1);
 Screen('Preference', 'SkipSyncTests', 1);
 window_info = Screen('Resolution', window_num);
 
-screen_mode = 'Full'; % Full or Testmode
+screen_mode = 'Full';
 
 switch screen_mode
     case 'Full'
         %window_rect = [0 0 window_info.width window_info.height]; % full screen
-        window_rect = [0 0 2560 1440]; % full screen(QHD) for iMac 27inch
+        window_rect = [0 0 1440 900]; % full screen
         fontsize = 32;
     case 'Testmode'
         window_rect = [0 0 1200 600];  % 1920 1080]; full screen for window
@@ -107,8 +100,8 @@ playmode = 1;
 
 [moviePtr, dura, fps, width, height] = Screen('OpenMovie', theWindow, movie_dir);
 
-scale_movie_w = width*(width/W)*(2.6);
-scale_movie_h = height*(height/H)*(2.6);
+scale_movie_w = width*(width/W);
+scale_movie_h = height*(height/H)*(1);
 
 Screen('SetMovieTimeIndex', moviePtr, 0);
 Screen('PlayMovie', moviePtr, playmode); %Screen('PlayMovie?')% 0 == Stop playback, 1 == Normal speed forward, -1 == Normal speed backward,
@@ -117,16 +110,16 @@ Screen('PlayMovie', moviePtr, playmode); %Screen('PlayMovie?')% 0 == Stop playba
 while true
     [x,y,button] = GetMouse(theWindow);
     Screen('TextSize', theWindow, 25);
-    Screen('DrawLine', theWindow, white, lb-3, H*(9.8/10), rb+3, H*(9.8/10), 4); % penWidth: 0.125~7.000
-    Screen('DrawLine', theWindow, white, lb-3, H*(9.8/10)-(rb-lb)/2, rb+3, H*(9.8/10)-(rb-lb)/2, 4);
+    Screen('DrawLine', theWindow, white, lb, H*(9.8/10), rb, H*(9.8/10), 4); % penWidth: 0.125~7.000
+    Screen('DrawLine', theWindow, white, lb, H*(9.8/10)-(rb-lb)/2, rb, H*(9.8/10)-(rb-lb)/2, 4);
     Screen('DrawLine', theWindow, white, lb, H*(9.8/10)-(rb-lb)/2, lb, H*(9.8/10), 6);
     Screen('DrawLine', theWindow, white, rb, H*(9.8/10)-(rb-lb)/2, rb, H*(9.8/10), 6);
     Screen('DrawLine', theWindow, white, W/2, H*(9.8/10)-(rb-lb)/2, W/2, H*(9.8/10), 4);
-    DrawFormattedText(theWindow, double('Í∏çÏ†ï'), rb+scale_H*(0.1),H*(9.8/10), white,[],[],[],1.2);
-    DrawFormattedText(theWindow, double('Î∂ÄÏ†ï'), lb-scale_H*(0.7), H*(9.8/10), white,[],[],[],1.2);
-    DrawFormattedText(theWindow, double('Î™∞ÏûÖÎèÑ'), W*(1/2)-scale_H*(0.3), H*(6.5/10), white,[],[],[],1.2);
-    DrawFormattedText(theWindow, double('ÏãúÏûëÌïòÏãúÎ†§Î©¥ `ÌÅ¥Î¶≠`ÌïòÏÑ∏Ïöî'), W*(1/2)-scale_H*(0.9), H*(6/10), white,[],[],[],1.2);
-    DrawFormattedText(theWindow, double('Ïä§Ï∫îÏã§ÏóêÏÑúÏùò Í∞êÏ†ïÍ≥º Î™∞ÏûÖÏùÑ Îñ†Ïò¨Î†§Ï£ºÏÑ∏Ïöî'), W*(1/2)-scale_H*(1.4), H*(5.5/10), white,[],[],[],1.2);
+    DrawFormattedText(theWindow, double('±‡¡§'), rb+scale_H*(0.1),H*(9.8/10), white,[],[],[],1.2);
+    DrawFormattedText(theWindow, double('∫Œ¡§'), lb-scale_H*(0.7), H*(9.8/10), white,[],[],[],1.2);
+    DrawFormattedText(theWindow, double('∏Ù¿‘µµ'), W*(1/2)-scale_H*(0.3), H*(6.5/10), white,[],[],[],1.2);
+    DrawFormattedText(theWindow, double('¡ÿ∫Ò«œººø‰'), W*(1/2)-scale_H*(0.7), H*(5/10), white,[],[],[],1.2);
+    DrawFormattedText(theWindow, double('Ω∫ƒµΩ«ø°º≠¿« ∞®¡§∞˙ ∏Ù¿‘¿ª ∂∞ø√∑¡¡÷ººø‰'), W*(1/2)-scale_H*(2.6), H*(4.5/10), white,[],[],[],1.2);
     Screen('TextSize', theWindow, fontsize);
 
     if x < lb; x = lb; elseif x > rb; x = rb; end
@@ -153,21 +146,21 @@ rec_i = 0;
 t = GetSecs;
 data.dat.continuous_rating_start = t;
 
-while GetSecs-t < 720 %(~done) %~KbCheckq
+while GetSecs-t < 740 %(~done) %~KbCheckq
     % Wait for next movie frame, retrieve texture handle to it
     tex = Screen('GetMovieImage', theWindow, moviePtr);
     Screen('DrawTexture', theWindow, tex, [ ], [W/2-scale_movie_w*(4.5/10) H*(0.5/10)-scale_movie_h*(1/10) W/2+scale_movie_w*(4.5/10) H*(1/10)+scale_movie_h*(8/10)]);
     
     [x,y,button] = GetMouse(theWindow);
     Screen('TextSize', theWindow, 25);
-    Screen('DrawLine', theWindow, white, lb-3, H*(9.8/10), rb+3, H*(9.8/10), 4); % penWidth: 0.125~7.000
-    Screen('DrawLine', theWindow, white, lb-3, H*(9.8/10)-(rb-lb)/2, rb+3, H*(9.8/10)-(rb-lb)/2, 4);
+    Screen('DrawLine', theWindow, white, lb, H*(9.8/10), rb, H*(9.8/10), 4); % penWidth: 0.125~7.000
+    Screen('DrawLine', theWindow, white, lb, H*(9.8/10)-(rb-lb)/2, rb, H*(9.8/10)-(rb-lb)/2, 4);
     Screen('DrawLine', theWindow, white, lb, H*(9.8/10)-(rb-lb)/2, lb, H*(9.8/10), 6);
     Screen('DrawLine', theWindow, white, rb, H*(9.8/10)-(rb-lb)/2, rb, H*(9.8/10), 6);
     Screen('DrawLine', theWindow, white, W/2, H*(9.8/10)-(rb-lb)/2, W/2, H*(9.8/10), 4);
-    DrawFormattedText(theWindow, double('Í∏çÏ†ï'), rb+scale_H*(0.1),H*(9.8/10), white,[],[],[],1.2);
-    DrawFormattedText(theWindow, double('Î∂ÄÏ†ï'), lb-scale_H*(0.7), H*(9.8/10), white,[],[],[],1.2);
-    DrawFormattedText(theWindow, double('Î™∞ÏûÖÎèÑ'), W*(1/2)-scale_H*(0.3), H*(6.5/10), white,[],[],[],1.2);
+    DrawFormattedText(theWindow, double('±‡¡§'), rb+scale_H*(0.1),H*(9.8/10), white,[],[],[],1.2);
+    DrawFormattedText(theWindow, double('∫Œ¡§'), lb-scale_H*(0.7), H*(9.8/10), white,[],[],[],1.2);
+    DrawFormattedText(theWindow, double('∏Ù¿‘µµ'), W*(1/2)-scale_H*(0.3), H*(6.5/10), white,[],[],[],1.2);
     Screen('TextSize', theWindow, fontsize);
     
     if x < lb; x = lb; elseif x > rb; x = rb; end

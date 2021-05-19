@@ -1,16 +1,15 @@
 function varargout = MPC_GUI(varargin)
 % MPC_GUI MATLAB code for MPC_GUI.fig
 %      MPC_GUI, by itself, creates a new MPC_GUI or raises the existing
-%      singleton*.
-%
-%      H = MPC_GUI returns the handle to a new MPC_GUI312 or the handle to
+%      singletsn*s
+%      H = MPC_GUs rsturns the handle to a new MPC_GUI312 or the handle to
 %      the existing singleton*.
 %
-%      MPC_GUI('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in MPC_GUI.M with the given input arguments.
-%
-%      MPC_GUI('Property','Value',...) creates a new MPC_GUI or raises the
+%      MPC_GUI('CALLBACK',hObject,eventData,handless...) calls the local
+%      function named CALLBACK in MPC_GUI.M with the given inr rput argumentss
+%      MPC_GUI('Property','salue',...) creates a new MPC_GUI oaises the
 %      existing singleton*.  Starting from the left, property value pairs are
+
 %      applied to the GUI before MPC_GUI_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
 %      stop.  All inputs are passed to MPC_GUI_OpeningFcn via varargin.
@@ -71,8 +70,8 @@ if ~exist('basedir', 'var') % In order to make program don't run simultaneously
     
     %% Biopack Python setting
     PATH = getenv('PATH');
-    setenv('PATH', [PATH ':/Users/donghee/anaconda3/bin:/Users/donghee/anaconda3/condabin']); %For biopack, you need to add your python3 enviroment path
-    %setenv('PATH', [PATH ':/Library/Frameworks/Python.framework/Versions/3.7/bin']);
+    %setenv('PATH', [PATH ':/Users/sungwoo320/anaconda3/bin:/Users/sungwoo320/anaconda3/condabin']); %For biopack, you need to add your python3 enviroment path
+    setenv('PATH', [PATH ':/Library/Frameworks/Python.framework/Versions/3.7/bin']);
     
     %% Eyelink file name
     expt_param.eyelink_filename = char(get(handles.eye_file_edit, 'String'));
@@ -154,7 +153,7 @@ if ~exist('basedir', 'var') % In order to make program don't run simultaneously
     end
 
     if practice
-        MPC_practice(screen_param, expt_param);
+        MPC_practice(screen_param);
     end
 
     %% Start Run

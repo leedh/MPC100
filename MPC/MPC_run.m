@@ -398,4 +398,4 @@ data.dat.run_duration_time = data.dat.run_end_time - data.dat.fmri_start_time;
 save(data.datafile, 'data', '-append');
 save(ckpt_filedir, 'ckpt');
 
-end
+end    
