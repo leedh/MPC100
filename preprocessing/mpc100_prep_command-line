@@ -1,0 +1,20 @@
+nohup matlab_orig -nodisplay -nosplash -nodesktop -r "cd '/media/das/dropbox/projects/MPC/MPC_100/sync/scripts/imaging';mpc100_preproc_cli_gpu3(35);exit" >> mpc100_preproc_sub035.txt 2>&1 </dev/null &
+
+
+nohup rsync -avh /media/das/cocoanlab\ Dropbox/data/MPC/MPC_100/imaging/preprocessed/ /media/donghee/Seagate\ Backup\ Plus\ Drive/MPC100/data/imaging/preprocessed >> backup-exhd-mpc100_prep_2.txt 2>&1 </dev/null &
+
+nohup rsync -avh /media/das/cocoanlab\ Dropbox/data/MPC/MPC_100/imaging/dicom_from_scanner/ /media/donghee/Seagate\ Backup\ Plus\ Drive/MPC100/data/imaging/dicom_from_scanner >> backup-exhd-mpc100_prep_2.txt 2>&1 </dev/null &
+
+nohup rsync -avh /media/das/cocoanlab\ Dropbox/data/MPC/MPC_100/imaging/preprocessed/sub_part3/ /media/donghee/Seagate\ Backup\ Plus\ Drive/MPC100/data/imaging/preprocessed >> backup-exhd-mpc100_prep_3.txt 2>&1 </dev/null &
+
+nohup rsync -avh /media/das/cocoanlab\ Dropbox/data/MPC/MPC_100/imaging/preprocessed/sub_part2/ /media/donghee/Seagate\ Backup\ Plus\ Drive2/MPC100/data/imaging/preprocessed >> backup-exhd-mpc100_prep_5.txt 2>&1 </dev/null &
+
+nohup rsync -avh /media/das/old_cocoanlab_Dropbox_201117/data/MPC/MPC_100/imaging/preprocessed/sub_part3/ /media/donghee/ethd2/MPC100/data/imaging/preprocessed >> backup-exhd-mpc100_prep_6.txt 2>&1 </dev/null &
+
+nohup rsync -avh /media/das/cocoanlab\ Dropbox/projects/MPC/MPC_100/ /media/donghee/ethd1/MPC100/projects >> backup-exhd-mpc100_prep_8.txt 2>&1 </dev/null &
+
+
+nohup rsync -avh /media/das/old_cocoanlab_Dropbox_201117/data/MPC/MPC_100/imaging/preprocessed/sub_part1/ /media/donghee/ethd1/MPC100/data/imaging/preprocessed >> backup-exhd-mpc100_prep_9.txt 2>&1 </dev/null &
+
+
+nohup rsync -avh /media/das/MPC100_dicom_backup/raw/ /media/donghee/ethd1/MPC100/data/imaging/raw >> backup-exhd-mpc100_prep_11.txt 2>&1 </dev/null &
